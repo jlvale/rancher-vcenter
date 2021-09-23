@@ -12,7 +12,7 @@
 && sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab`
 4. Apply the following sysctl settings:
 `sysctl -w net.bridge.bridge-nf-call-iptables=1`
-5. Create a file disabling coud-init's initial network configuration
+5. Create a file disabling coud-init initial network configuration
 `vim /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg`
   with the following content:
 `network: {config: disabled}`
@@ -50,7 +50,7 @@ Oh man, I'm so sorry for you, but you will get trough it. We are going to use vS
 2. Put a name on it and assign at least one port group
 3. Then click on `IPv4` and define the Subnet, Gateway, DNS Server Addresses, IP Pool and IP Pool Range. IP Pool and IP Pool Range are the parameters that will make possible to assign an unique IP address to each one of the created nodes. 
 ![Network Protocol Profile](https://i.imgur.com/BmyLC7M.png)
-4. After tou create the Network Protocol Profile you should be able to see that it is assigned to the Port Group that you choosed on the tab `Assigned Networks`
+4. After you create the Network Protocol Profile you should be able to see that it is assigned to the Port Group that you chose on the tab `Assigned Networks`
 5. Go to the template virtual machine and `Enable` vApp on the `Configure` tab. On the `Properties` tab you have to configure the ovf environment variables for IP, Netmask, Gateway and DNS. Make sure that they follow the format: `${param:portgroup}`. You should have something like this:
 ![vApp](https://i.imgur.com/WI70OJi.png) 
 6. Inside Rancher go to `User > Node Templates > vSphere`
@@ -90,3 +90,4 @@ runcmd:
 🎉🎉🎉
 
 Huge thanks to @David (https://github.com/David-VTUK) for all the help!
+
