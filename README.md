@@ -1,9 +1,9 @@
 # rancher-vcenter
 *Requirements: Rancher >= v2.3.6*
 
-## This is a guide showing how to configure Rancher to provision RKE clusters automatically using vSphere tá? 
+# This is a guide showing how to configure Rancher to provision RKE clusters automatically using vSphere tá? 
 
-### Create a new template virtual machine on vSphere using the following configurations: 
+## Create a new template virtual machine on vSphere using the following configurations: 
 1. Install docker and cloud-init 
 2. Add docker user on group docker
 `usermod -aG docker <user_name>`
@@ -36,14 +36,14 @@ By the way, this is the way Rancher communicates with vSphere in order to provis
 ![Arquitetura](https://i.imgur.com/5yYbRvX.png)
 
 
-### If your environment DOES have DHCP
+## If your environment DOES have DHCP
 Then it's all good pretty much. Now you just need to create the Cloud Credential and Node Templates for vSphere inside Rancher
 
 1. Inside Rancher go to `User > Node Templates > vSphere`
 2. On the Cloud Credentials click on `Add New` and insert your vSphere Credentials. **Add an user with enough privileges to create and delete infrastructure inside vSphere.**
 3. Configure the rest of the parameters on the Node Template matching your environment.
 
-### If your environment DOESN'T have DHCP (hard mode)
+## If your environment DOESN'T have DHCP (hard mode)
 Oh man, I'm so sorry for you, but you will get trough it. We are going to use vSphere Network Protocol Profile, vApp and cloud-init to get things done here:
 
 1. First off we need to create a vSphere Network Protocol Profile. Inside vSphere go to `Datacenter > Configure > Network Protocol Profiles and click Add`.
