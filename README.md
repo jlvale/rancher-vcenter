@@ -1,5 +1,5 @@
 # rancher-vcenter
-*Obs: Requirements: Rancher >= v2.3.6*
+*Requirements: Rancher >= v2.3.6*
 
 ## This is a guide showing how to configure Rancher to provision RKE clusters automatically using vSphere tá? 
 
