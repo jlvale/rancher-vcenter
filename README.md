@@ -89,5 +89,5 @@ runcmd:
 
 🎉🎉🎉
 
-Huge thanks to @David (https://github.com/David-VTUK) for all the help!
+Huge thanks to @David-VTUK (https://github.com/David-VTUK) for all the help!
 
