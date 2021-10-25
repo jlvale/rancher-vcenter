@@ -1,7 +1,7 @@
 # Provisioning RKE clusters inside vSphere infrastructure using Rancher
 *Requirements: Rancher >= v2.3.6*
 
-## This is a guide showing how to configure Rancher to provision RKE clusters automatically using vSphere tá? 
+## This is a guide showing how to configure Rancher to provision RKE clusters automatically using vSphere 
 
 ### Create a new template virtual machine on vSphere using the following configurations:
 1. Install docker and cloud-init 
