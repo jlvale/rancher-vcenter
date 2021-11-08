@@ -44,7 +44,7 @@ Then it's all good pretty much. Now you just need to create the Cloud Credential
 3. Configure the rest of the parameters on the Node Template matching your environment.
 
 ### If your environment DOESN'T have DHCP (hard mode)
-Oh man, I'm so sorry for you, but you will get trough it. We are going to use vSphere Network Protocol Profile, vApp and cloud-init to get things done here:
+We are going to use vSphere Network Protocol Profile, vApp and cloud-init to get things done here:
 
 1. First off we need to create a vSphere Network Protocol Profile. Inside vSphere go to `Datacenter > Configure > Network Protocol Profiles and click Add`.
 2. Put a name on it and assign at least one port group
