@@ -59,30 +59,28 @@ We are going to use vSphere Network Protocol Profile, vApp and cloud-init to get
 9. In the Cloud Config YAML tab you have to add a script that will use the variables created on the ovf environment by vSphere and configure the OS network. The below example is from a SUSE Linux 15SP2 using Network Service:
 ```
 #cloud-config
-write_files:
-  - path: /root/netconfig.sh 
-    content: |
-      #!/bin/bash 
-      vmtoolsd --cmd 'info-get guestinfo.ovfEnv' > /tmp/ovfenv 
-      IPAddress=$(sed -n 's/.*Property oe:key="guestinfo.interface.0.ip.0.address" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
-      SubnetMask=$(sed -n 's/.*Property oe:key="guestinfo.interface.0.ip.0.netmask" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
-      Gateway=$(sed -n 's/.*Property oe: key="guestinfo.interface.0.route.0.gateway" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
-      DNS=$(sed -n 's/.*Property oe:key="guestinfo.dns.servers" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
-          
-      echo "ONBOOT='yes'
-      IPADDR='$IPAddress'
-      NETMASK='$SubnetMask'
-      BOOTPROTO='static'
-      STARTMODE='auto'" > /etc/sysconfig/network/ifcfg-eth0
-          
-      echo "default $Gateway - -" > /etc/sysconfig/network/routes
-          
-      echo "nameserver $DNS" >> /var/run/netconfig/resolv.conf
-
+write_files: 
+  - path: /root/test.sh
+  content: | 
+    #!/bin/bash 
+    vmtoolsd --cmd 'info-get guestinfo.ovfEnv' > /tmp/ovfenv 
+    IPAddress=$(sed -n 's/.*Property oe:key="guestinfo.interface.O.ip.O.address" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
+    SubnetMask=$(sed -n 's/.*Property oe:key="guestinfo.interface.O.ip.0.netmask" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
+    Gateway=$(sed -n 's/.*Property oe: key="guestinfo.interface.0.route.0.gateway" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
+    DNS=$(sed -n 's/.*Property oe:key="guestinfo.dns.servers" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
+ 
+    echo "ONBOOT='yes'
+    IPADDR='$IPAddress/$SubnetMask'
+    BOOTPROTO='static'
+    STARTMODE='auto'" > /etc/sysconfig/network/ifcfg-eth0
+    echo "default $Gateway - -" > /etc/sysconfig/network/routes
+    
+    echo "nameserver $DNS" >> /var/run/netconfig/resolv.conf
+    EOF
 runcmd: 
-  - [chmod, +x, /root/netconfig.sh ]
-  - [bash, /root/netconfig.sh ]
-  - [systemctl, restart, network.service]
+ - sudo chmod +x /root/test.sh 
+ - sudo bash /root/test.sh 
+ - sudo systemctl restart network.service
 ```
 10. Now you have to configure the vApp properties, so that cloud-init can map the network values (IP, mask, DNS and Gateway) from the vApp variables we configured on step 5. You shall have something like this:
 ![Passing Variables](https://i.imgur.com/9XI5v6C.png)
