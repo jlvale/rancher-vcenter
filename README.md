@@ -1,5 +1,6 @@
 # Provisioning RKE clusters inside vSphere infrastructure using Rancher
-*Requirements: Rancher >= v2.3.6*
+*Requirements: Rancher >= v2.3.6 and an user insisde vSphere with the following permissions: https://rancher.com/docs/rancher/v2.6/en/cluster-provisioning/rke-clusters/node-pools/vsphere/creating-credentials/*
+
 
 ## This is a guide showing how to configure Rancher to provision RKE clusters automatically using vSphere 
 
