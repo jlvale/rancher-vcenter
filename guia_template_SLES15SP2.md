@@ -36,4 +36,4 @@ Efetuar a instalação do Cloud Init e habilitar todas as etapas (init, config e
   rm -rf /var/cache/*/* /var/crash/* /var/lib/systemd/coredump/*
   cloud-init clean -s -l
  ```
- 6. Desligar a VM e efetuar habilitar a configuração de vApp antes de transformá-la em template;
+ 6. Desligar a VM e, apenas se o ambiente não possuir DHCP, habilitar o vApp (via interface do vCenter) antes de transformá-la em template;
