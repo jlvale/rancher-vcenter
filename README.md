@@ -65,8 +65,8 @@ write_files:
   content: | 
     #!/bin/bash 
     vmtoolsd --cmd 'info-get guestinfo.ovfEnv' > /tmp/ovfenv 
-    IPAddress=$(sed -n 's/.*Property oe:key="guestinfo.interface.O.ip.O.address" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
-    SubnetMask=$(sed -n 's/.*Property oe:key="guestinfo.interface.O.ip.0.netmask" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
+    IPAddress=$(sed -n 's/.*Property oe:key="guestinfo.interface.0.ip.0.address" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
+    SubnetMask=$(sed -n 's/.*Property oe:key="guestinfo.interface.0.ip.0.netmask" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
     Gateway=$(sed -n 's/.*Property oe: key="guestinfo.interface.0.route.0.gateway" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
     DNS=$(sed -n 's/.*Property oe:key="guestinfo.dns.servers" oe:value="\([^"]*\).*/\1/p' /tmp/ovfenv) 
  
